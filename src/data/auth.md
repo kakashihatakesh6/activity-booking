@@ -25,12 +25,7 @@
   ```json
   {
     "success": true,
-    "token": "JWT_TOKEN",
-    "data": {
-      "id": "user_id",
-      "name": "John Doe",
-      "email": "john@example.com"
-    }
+    "token": "JWT_TOKEN"
   }
   ```
 
@@ -53,11 +48,34 @@
   ```json
   {
     "success": true,
-    "token": "JWT_TOKEN",
-    "data": {
-      "id": "user_id",
-      "name": "John Doe",
-      "email": "john@example.com"
-    }
+    "token": "JWT_TOKEN"
+  }
+  ```
+
+### Error Responses
+
+The endpoints may return the following error responses:
+
+- **400 Bad Request**:
+  ```json
+  {
+    "success": false,
+    "error": "Please provide email and password"
+  }
+  ```
+
+- **401 Unauthorized**:
+  ```json
+  {
+    "success": false,
+    "error": "Invalid credentials"
+  }
+  ```
+
+- **503 Service Unavailable**:
+  ```json
+  {
+    "success": false,
+    "error": "Database connection unavailable"
   }
   ``` 

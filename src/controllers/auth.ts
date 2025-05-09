@@ -3,9 +3,22 @@ import jwt from 'jsonwebtoken';
 import mongoose from 'mongoose';
 import User, { IUser } from '../models/User';
 
-// Helper function to check database connection
-const isDatabaseConnected = (): boolean => {
-  return mongoose.connection.readyState === 1;
+// Helper function to check database connection with detailed status
+const checkDatabaseConnection = (): { connected: boolean; status: string } => {
+  const readyState = mongoose.connection.readyState;
+  
+  switch (readyState) {
+    case 0:
+      return { connected: false, status: 'Disconnected' };
+    case 1:
+      return { connected: true, status: 'Connected' };
+    case 2:
+      return { connected: false, status: 'Connecting' };
+    case 3:
+      return { connected: false, status: 'Disconnecting' };
+    default:
+      return { connected: false, status: 'Unknown' };
+  }
 };
 
 // Generate JWT
@@ -20,16 +33,27 @@ const generateToken = (id: string): string => {
 // @access  Public
 export const register = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Check database connection
-    if (!isDatabaseConnected()) {
+    // Check database connection with detailed status
+    const db = checkDatabaseConnection();
+    if (!db.connected) {
       res.status(503).json({
         success: false,
-        error: 'Database connection unavailable'
+        error: `Database connection unavailable (Status: ${db.status}). Please try again later.`
       });
       return;
     }
 
     const { name, email, phone, password } = req.body;
+
+    // Check if user already exists
+    const existingUser = await User.findOne({ email });
+    if (existingUser) {
+      res.status(400).json({
+        success: false,
+        error: 'User with this email already exists'
+      });
+      return;
+    }
 
     // Create user
     const user = await User.create({
@@ -42,11 +66,30 @@ export const register = async (req: Request, res: Response): Promise<void> => {
     // Generate token
     const token = generateToken(user._id.toString());
 
+    await user.save();
+
     res.status(201).json({
       success: true,
-      token
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone
+      }
     });
   } catch (error: any) {
+    console.error('Register error:', error);
+    
+    // Check if this is a MongoDB-specific error
+    if (error.name === 'MongooseError' || error.name === 'MongoError') {
+      res.status(503).json({
+        success: false,
+        error: 'Database operation failed. Please try again later.'
+      });
+      return;
+    }
+    
     res.status(400).json({
       success: false,
       error: error.message
@@ -59,11 +102,12 @@ export const register = async (req: Request, res: Response): Promise<void> => {
 // @access  Public
 export const login = async (req: Request, res: Response): Promise<void> => {
   try {
-    // Check database connection
-    if (!isDatabaseConnected()) {
+    // Check database connection with detailed status
+    const db = checkDatabaseConnection();
+    if (!db.connected) {
       res.status(503).json({
         success: false,
-        error: 'Database connection unavailable'
+        error: `Database connection unavailable (Status: ${db.status}). Please try again later.`
       });
       return;
     }
@@ -106,9 +150,26 @@ export const login = async (req: Request, res: Response): Promise<void> => {
 
     res.status(200).json({
       success: true,
-      token
+      token,
+      user: {
+        id: user._id,
+        name: user.name,
+        email: user.email,
+        phone: user.phone
+      }
     });
   } catch (error: any) {
+    console.error('Login error:', error);
+    
+    // Check if this is a MongoDB-specific error
+    if (error.name === 'MongooseError' || error.name === 'MongoError') {
+      res.status(503).json({
+        success: false,
+        error: 'Database operation failed. Please try again later.'
+      });
+      return;
+    }
+    
     res.status(400).json({
       success: false,
       error: error.message

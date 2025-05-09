@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Activity Booking API</title>
+    <style>
+      body {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        background: linear-gradient(120deg, #84fab0 0%, #8fd3f4 100%);
+        color: #333;
+        margin: 0;
+        padding: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+      }
+      .container {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 10px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        padding: 40px;
+        text-align: center;
+        max-width: 650px;
+        animation: fadeIn 0.8s ease-in-out;
+      }
+      h1 {
+        margin-top: 0;
+        color: #2c3e50;
+      }
+      .status {
+        display: inline-block;
+        background-color: #2ecc71;
+        color: white;
+        padding: 5px 15px;
+        border-radius: 20px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        animation: pulse 2s infinite;
+      }
+      .endpoints {
+        background-color: #f8f9fa;
+        border-radius: 5px;
+        padding: 15px;
+        text-align: left;
+      }
+      .endpoint {
+        margin: 10px 0;
+        font-family: monospace;
+        color: #e74c3c;
+        transform: translateX(0);
+        transition: transform 0.3s ease;
+      }
+      .endpoint:hover {
+        transform: translateX(10px);
+      }
+      .footer {
+        margin-top: 30px;
+        font-size: 0.9em;
+        color: #7f8c8d;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      @keyframes pulse {
+        0% { transform: scale(1); }
+        50% { transform: scale(1.05); }
+        100% { transform: scale(1); }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Activity Booking API</h1>
+      <div class="status">Server Running</div>
+      <p>Welcome to the Activity Booking API. The server is up and running successfully.</p>
+      <div class="endpoints">
+        <p>Available base endpoints:</p>
+        <div class="endpoint">→ /api/health</div>
+        <div class="endpoint">→ /api/auth</div>
+        <div class="endpoint">→ /api/activities</div>
+        <div class="endpoint">→ /api/bookings</div>
+      </div>
+      <div class="footer">
+        <p>Node.js | Express | MongoDB</p>
+        <p>Server Time: <span id="serverTime">{{serverTime}}</span></p>
+      </div>
+    </div>
+
+    <script>
+      // Function to update the time
+      function updateTime() {
+        const timeElement = document.getElementById('serverTime');
+        const now = new Date();
+        timeElement.textContent = now.toLocaleString();
+      }
+      
+      // Update time immediately and then every second
+      updateTime();
+      setInterval(updateTime, 1000);
+      
+      // Add hover animation to endpoints
+      const endpoints = document.querySelectorAll('.endpoint');
+      endpoints.forEach(endpoint => {
+        endpoint.addEventListener('mouseenter', () => {
+          endpoint.style.color = '#27ae60';
+        });
+        endpoint.addEventListener('mouseleave', () => {
+          endpoint.style.color = '#e74c3c';
+        });
+      });
+    </script>
+  </body>
+</html> 

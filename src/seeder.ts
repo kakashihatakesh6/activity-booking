@@ -10,7 +10,7 @@ dotenv.config();
 // Connect to MongoDB
 const connectDB = async (): Promise<boolean> => {
   try {
-    const mongoUri = "mongodb+srv://sages:sages@sages.p1zye6m.mongodb.net/activity-booking"
+    const mongoUri = process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/activity-booking';
     
     if (!mongoUri) {
       console.error('MONGODB_URI environment variable is not set.');

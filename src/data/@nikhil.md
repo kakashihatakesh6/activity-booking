@@ -18,4 +18,5 @@ The API is organized into three main route groups:
 ## Developer Information
 - **Developer**: Nikhil
 - **Project**: Activity Booking System
-- **Version**: 1.0.0 
+- **Version**: 1.1.0
+- **Last Updated**: November 2023 
