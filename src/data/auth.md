@@ -6,7 +6,7 @@
 - **Description**: Register a new user
 - **Authentication**: Not required
 - **Controller**: `register`
-- **Middleware**: `validationErrorHandler`
+- **Middleware**: `validationErrorHandler`, `checkDbConnection`
 - **Validation**:
   - `name`: Required
   - `email`: Valid email required
@@ -33,7 +33,7 @@
 - **Description**: Login a user
 - **Authentication**: Not required
 - **Controller**: `login`
-- **Middleware**: `validationErrorHandler`
+- **Middleware**: `validationErrorHandler`, `checkDbConnection`
 - **Validation**:
   - `email`: Valid email required
   - `password`: Required
@@ -76,6 +76,6 @@ The endpoints may return the following error responses:
   ```json
   {
     "success": false,
-    "error": "Database connection unavailable"
+    "error": "Database connection unavailable. Please try again later."
   }
   ``` 

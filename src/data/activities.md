@@ -6,6 +6,7 @@
 - **Description**: Get all activities
 - **Authentication**: Not required
 - **Controller**: `getActivities`
+- **Middleware**: `checkDbConnection`
 - **Request**: No request body required
 - **Response**:
   ```json
@@ -31,6 +32,7 @@
 - **Description**: Get a single activity by ID
 - **Authentication**: Not required
 - **Controller**: `getActivity`
+- **Middleware**: `checkDbConnection`
 - **Request**: No request body required
 - **Response**:
   ```json
@@ -51,9 +53,11 @@
 
 ### POST /api/activities/:id/book
 - **Description**: Book an activity
-- **Authentication**: Required
+- **Authentication**: Bearer Token
+- **Headers**: Bearer Token
+  Authorization:  Bearer YOUR_TOKEN_HERE
 - **Controller**: `bookActivity`
-- **Middleware**: `protect`
+- **Middleware**: `protect`, `checkDbConnection`
 - **Request**: No request body required (user ID comes from auth token)
 - **Response**:
   ```json
@@ -94,6 +98,6 @@ All endpoints may return the following error responses:
   ```json
   {
     "success": false,
-    "error": "Database connection unavailable"
+    "error": "Database connection unavailable. Please try again later."
   }
   ``` 
