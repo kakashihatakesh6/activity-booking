@@ -1,5 +1,72 @@
-node_modules/
-dist/
-.env
+# OS-generated files
+.DS_Store
+Thumbs.db
+.directory
+*.desktop
+ehthumbs.db
+Desktop.ini
+
+# Logs
+logs
 *.log
-.DS_Store 
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+lerna-debug.log*
+.pnpm-debug.log*
+
+# Dependency directories
+node_modules/
+jspm_packages/
+bower_components/
+.pnp/
+.pnp.js
+
+# Build outputs
+dist/
+build/
+out/
+.next/
+.nuxt/
+.cache/
+public/dist/
+
+# Environment variables
+.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.env.*.local
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+*.swp
+*.vim
+
+# Coverage and test directories
+coverage/
+.nyc_output/
+.jest/
+.cypress/
+
+# Misc
+.serverless/
+.fusebox/
+.dynamodb/
+.tern-port
+.eslintcache
+.yarn/cache
+.yarn/unplugged
+.yarn/build-state.yml
+.yarn/install-state.gz
+.pnp.*
+.vercel
