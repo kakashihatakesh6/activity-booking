@@ -15,8 +15,8 @@ A modern RESTful API for an activity booking application built with Node.js, Exp
 
 ## 🌐 Live Links
 
-- 🔵 **Render Deployment**: [https://your-render-url.onrender.com](https://activity-booking-zqd2.onrender.com)
-- 🟣 **Vercel (Frontend - if applicable)**: [https://your-vercel-url.vercel.app](https://activity-booking.vercel.app/)
+- 🔵 **Render Deployment**: [https://activity-booking-zqd2.onrender.com](https://activity-booking-zqd2.onrender.com)
+- 🟣 **Vercel (Frontend - if applicable)**: [https://activity-booking.vercel.app](https://activity-booking.vercel.app/)
 
 ## ✨ Features
 
