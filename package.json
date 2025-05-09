@@ -5,7 +5,8 @@
   "scripts": {
     "start": "node dist/src/index.js",
     "dev": "nodemon --exec ts-node src/index.ts",
-    "build": "tsc",
+    "build": "tsc && npm run copy-views",
+    "copy-views": "mkdir -p dist/src/views && cp -r src/views/* dist/src/views/",
     "seed:import": "ts-node src/seeder.ts -i",
     "seed:delete": "ts-node src/seeder.ts -d",
     "test": "echo \"Error: no test specified\" && exit 1"
