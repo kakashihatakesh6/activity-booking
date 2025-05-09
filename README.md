@@ -2,11 +2,6 @@
 
 A modern RESTful API for an activity booking application built with Node.js, Express, TypeScript, and MongoDB.
 
-## 🌐 Live Links
-
-- 🔵 **Render Deployment**: [https://your-render-url.onrender.com](https://activity-booking-zqd2.onrender.com)
-- 🟣 **Vercel (Frontend - if applicable)**: [https://your-vercel-url.vercel.app](https://activity-booking.vercel.app/)
-
 <div align="center">
   
 [![Node.js](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)](https://nodejs.org/)
@@ -17,6 +12,11 @@ A modern RESTful API for an activity booking application built with Node.js, Exp
 [![Docker](https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white)](https://www.docker.com/)
 
 </div>
+
+## 🌐 Live Links
+
+- 🔵 **Render Deployment**: [https://your-render-url.onrender.com](https://activity-booking-zqd2.onrender.com)
+- 🟣 **Vercel (Frontend - if applicable)**: [https://your-vercel-url.vercel.app](https://activity-booking.vercel.app/)
 
 ## ✨ Features
 
